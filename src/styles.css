@@ -1,0 +1,198 @@
+:root {
+  color-scheme: dark;
+  --color-bg: #171717;
+  --color-text: #e5e5e5;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #262626;
+  --color-secondary-foreground: #e5e5e5;
+  --color-accent: #1e3a8a;
+  --color-accent-foreground: #bfdbfe;
+  --color-border: #404040;
+  --color-muted: #262626;
+  --color-muted-foreground: #a3a3a3;
+  --color-card: #262626;
+  --color-card-foreground: #e5e5e5;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+.app-tabs .ant-tabs-nav,
+.app-tabs .ant-tabs-content-holder {
+  background: transparent;
+}
+
+.app-tabs .ant-tabs-tab {
+  background: var(--color-secondary);
+  border-color: var(--color-border);
+}
+
+.app-tabs .ant-tabs-tab .ant-tabs-tab-btn {
+  color: var(--color-secondary-foreground);
+}
+
+.app-tabs .ant-tabs-tab-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.app-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--color-accent-foreground);
+}
+
+.app-tabs .ant-tabs-ink-bar {
+  background: var(--color-primary);
+}
+
+.ant-layout,
+.ant-layout-header,
+.ant-layout-content {
+  background: transparent !important;
+}
+
+.ant-layout-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ant-card,
+.ant-modal-content,
+.ant-drawer-content,
+.ant-table,
+.ant-select-dropdown,
+.ant-dropdown,
+.ant-popover-inner,
+.ant-picker-panel-container,
+.ant-message-notice-content,
+.ant-notification-notice {
+  background: var(--color-card) !important;
+  color: var(--color-card-foreground) !important;
+  border-color: var(--color-border) !important;
+}
+
+.ant-card .ant-card-head-title,
+.ant-card .ant-card-body,
+.ant-drawer,
+.ant-modal-header,
+.ant-modal-title,
+.ant-modal-body,
+.ant-modal-footer,
+.ant-table-cell,
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-select-item,
+.ant-select-item-option-content,
+.ant-dropdown-menu,
+.ant-dropdown-menu-item,
+.ant-popover-title,
+.ant-popover-inner-content,
+.ant-picker,
+.ant-message,
+.ant-notification {
+  color: var(--color-card-foreground) !important;
+  border-color: var(--color-border) !important;
+}
+
+.ant-table-thead > tr > th {
+  background: var(--color-secondary) !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: rgba(62, 90, 255, 0.15) !important;
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-textarea,
+.ant-select-selector,
+.ant-picker,
+.ant-input-number,
+.ant-input-number-in-form-item {
+  background: var(--color-secondary) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+.ant-input::placeholder,
+.ant-input-textarea::placeholder,
+.ant-select-selection-placeholder,
+.ant-select-selection-item,
+.ant-picker-input input::placeholder {
+  color: var(--color-muted-foreground) !important;
+}
+
+.ant-btn-primary {
+  color: var(--color-primary-foreground) !important;
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.ant-btn-default {
+  color: var(--color-text) !important;
+  background: var(--color-secondary) !important;
+  border-color: var(--color-border) !important;
+}
+
+.ant-btn-dangerous {
+  background: var(--color-destructive) !important;
+  border-color: var(--color-destructive) !important;
+  color: var(--color-destructive-foreground) !important;
+}
+
+.ant-message-notice-content,
+.ant-notification-notice-with-icon {
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.ant-empty-description,
+.ant-typography-secondary {
+  color: var(--color-muted-foreground) !important;
+}
+
+.ant-upload.ant-upload-drag {
+  border-color: var(--color-border) !important;
+  background: var(--color-secondary) !important;
+  color: var(--color-secondary-foreground) !important;
+}
+
+.ant-upload.ant-upload-drag:hover {
+  border-color: var(--color-primary) !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
