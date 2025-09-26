@@ -1,0 +1,67 @@
+Swipe Interview Assistant
+=========================
+
+Project Overview
+----------------
+This project is a React + TypeScript single-page application that simulates an AI powered technical interview. Candidates upload a resume, the system extracts required details, runs a six-question interview with timers, and generates an evaluation. Recruiters can review the results in a synchronized dashboard. State is persisted locally so a refresh never loses progress.
+
+Stack and Structure
+-------------------
+- Vite + React + TypeScript for a lean build pipeline and fast development server.
+- Redux Toolkit with redux-persist to keep session progress, questions, and candidate history inside localStorage.
+- Ant Design (dark theme) for layout, tabs, tables, forms, and modal styling.
+- pdfjs-dist and mammoth to extract raw text from PDF and DOCX resumes in the browser.
+- Google Gemini API to draft interview questions and produce a concise resume summary, with a static fallback bank if the API is unavailable.
+- Local scoring heuristics in `src/utils/scoring.ts` to grade answers and build a short final report.
+
+Key Features
+------------
+1. **Resume ingestion**: Drag/drop upload accepts PDF or DOCX, extracts name/email/phone, and prompts the candidate if anything is missing before the interview begins.
+2. **Gemini powered questions**: Six React/Node questions (2 easy, 2 medium, 2 hard) are requested from Gemini; if the request fails, the app falls back to the static bank.
+3. **Timed chat experience**: Each question appears in the chat with a countdown (20s, 60s, or 120s). Answers auto-submit when time expires, and the next prompt appears automatically.
+4. **Persistence + resume**: The candidate can reload the page and continue where they left off thanks to redux-persist. An unfinished session triggers a "Welcome Back" modal.
+5. **Dashboard**: Interviewers get a searchable, sortable leaderboard with per-candidate transcript, per-question scores, and the Gemini resume summary.
+
+Configuration
+-------------
+Create a `.env.local` at the project root and set your Gemini API key. A demo key is baked in for quick testing, but supplying your own is strongly recommended.
+
+```
+VITE_GEMINI_API_KEY=your-google-ai-studio-key
+```
+
+The app also tolerates the environment variable being absent by falling back to the static question bank and skipping the generated resume summary.
+
+Local Development
+-----------------
+1. Install dependencies:
+   ```
+   npm install
+   ```
+2. Run the development server:
+   ```
+   npm run dev
+   ```
+   Vite will print the local URL (default `http://localhost:5173`).
+3. Recommended scripts for quick checks:
+   - `npm run lint` – ESLint on all TypeScript/React files.
+   - `npm run typecheck` – TypeScript in no-emit mode.
+   - `npm run build` – Production bundle (also runs the type build).
+
+Deployment
+----------
+`npm run build` produces a static bundle in `dist/`. Deploy the `dist` directory to Vercel, Netlify, or any static host.
+
+Code Walk
+---------
+- `src/main.tsx` – Configures Ant Design dark theme, Redux store, and persistence gate.
+- `src/App.tsx` – Provides the shell layout, tabs, and the "Welcome Back" modal.
+- `src/components/IntervieweeView.tsx` – Orchestrates the resume flow, chat timeline, timers, and scoring trigger.
+- `src/components/InterviewerView.tsx` – Leaderboard, search/sort, and transcript drawer.
+- `src/features/session.ts` and `src/features/candidates.ts` – Redux slices for the active session state and completed candidate records.
+- `src/utils/resumeParser.ts` and `src/services/resumeSummarizer.ts` – Resume text extraction plus optional Gemini summary.
+- `src/services/gemini.ts` – Question generation helper that talks to Gemini with a JSON-only system prompt and falls back to the static bank on any error or timeout.
+
+Author Notes
+------------
+The codebase favors a small file count and explicit control over side effects to keep the interviewer and interviewee views predictable. When adding features, prefer colocating hook logic with the component that owns it and keep Redux slices serializable so persistence remains reliable. For production usage, remember to swap in your own Google AI Studio key and consider additional error reporting around the external requests.
